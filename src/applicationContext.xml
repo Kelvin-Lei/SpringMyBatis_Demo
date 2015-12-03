@@ -21,7 +21,8 @@
 							http://www.springframework.org/schema/data/jpa/spring-jpa-1.3.xsd
 							http://www.springframework.org/schema/mvc
 							http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
-							
+	
+	<!-- 配置数据源 -->						
 	<bean id="myDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
 		<property name="url" value="jdbc:mysql://localhost:3306/test"></property>
@@ -29,27 +30,27 @@
 		<property name="password" value="root"></property>
 	</bean>
 	
+	<!-- 配置SqlSessionFactory -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="myDataSource"></property>
 		<property name="mapperLocations" value="classpath:org/kelvin/entity/*.xml"></property>
 	</bean>
 	
-	<!-- 按指定包和注解标记扫描Mapper/DAO -->
+	<!-- 配置MyBatis按指定包和注解标记扫描Mapper/DAO -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
-		<property name="basePackage" value="org.kelvin"></property>
+		<property name="basePackage" value="org.kelvin.dao"></property>
 		<property name="annotationClass" value="org.kelvin.annotation.MyBatisRepository"></property>
 	</bean>
 	
-	<!-- Spring MVC -->
+	<!-- 开启注解扫描 -->
 	<context:component-scan base-package="org.kelvin"></context:component-scan>
 	
-	<!-- 支持@RequestMapping请求和Controller映射 -->
+	<!-- 开启RequestMapping注解，支持@RequestMapping请求和Controller映射 -->
 	<mvc:annotation-driven></mvc:annotation-driven>
 	
-	<!-- SpringMVC的ViewResolver -->
+	<!-- SpringMVC的ViewResolver，处理请求转发 -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/jsp/"></property>
+		<property name="prefix" value="/WEB-INF/"></property>
 		<property name="suffix" value=".jsp"></property>
 	</bean>
 

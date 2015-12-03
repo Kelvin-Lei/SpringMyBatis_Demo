@@ -1,9 +1,10 @@
 package org.kelvin.annotation;
 
-import org.springframework.stereotype.Repository;
-
-@Repository
+/**
+ * 
+ * MyBatis使用该注解标识DAO
+ *
+ */
 public @interface MyBatisRepository {
-
-	String value() default "";
+	
 }
