@@ -34,14 +34,6 @@
 		<property name="mapperLocations" value="classpath:org/kelvin/entity/*.xml"></property>
 	</bean>
 	
-	<!-- 定义Mapper -->
-	<!--  
-	<bean id="deptMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
-		<property name="mapperInterface" value="org.kelvin.mapper.DeptMapper"></property>
-		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
-	</bean>
-	-->
-	
 	<!-- 按指定包和注解标记扫描Mapper/DAO -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
