@@ -7,7 +7,7 @@ import org.kelvin.entity.Emp;
 
 /**
  * 
- * 员工表的DAO组件
+ * 鍛樺伐琛ㄧ殑DAO缁勪欢
  *
  */
 @MyBatisRepository

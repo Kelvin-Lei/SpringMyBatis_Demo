@@ -2,7 +2,7 @@ package org.kelvin.annotation;
 
 /**
  * 
- * MyBatis使用该注解标识DAO
+ * MyBatis浣跨敤璇ユ敞瑙ｆ爣璇咲AO
  *
  */
 public @interface MyBatisRepository {
