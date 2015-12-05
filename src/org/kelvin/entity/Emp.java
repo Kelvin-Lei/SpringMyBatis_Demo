@@ -12,7 +12,10 @@ public class Emp {
 	private Double sal;
 	private Double comm;
 	private Integer deptno;
-	
+	/**
+	 * 关联属性，用于封闭员工对应的部门信息
+	 */
+	private Dept dept;
 	
 	public Integer getEmpno() {
 		return empno;
@@ -61,6 +64,12 @@ public class Emp {
 	}
 	public void setDeptno(Integer deptno) {
 		this.deptno = deptno;
+	}
+	public Dept getDept() {
+		return dept;
+	}
+	public void setDept(Dept dept) {
+		this.dept = dept;
 	}
 	
 }

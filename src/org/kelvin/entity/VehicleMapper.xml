@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.kelvin.dao.VehicleDAO">
+
+	<resultMap type="org.kelvin.entity.Vehicle" id="vehicleMap">
+		<id property="id" column="id"/>
+		<result property="color" column="color"/>
+		<discriminator javaType="java.lang.String" column="type">
+			<case value="T" resultType="org.kelvin.entity.Truck">
+				<result property="boxSize" column="doorsize"/>
+			</case>
+			<case value="C" resultType="org.kelvin.entity.Car">
+				<result property="doorSize" column="doorsize"/>
+			</case>
+		</discriminator>
+	</resultMap>
+	
+	<select id="findAll" resultMap="vehicleMap">
+		select * from t_car
+	</select>
+
+</mapper>

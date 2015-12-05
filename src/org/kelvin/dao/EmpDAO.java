@@ -29,4 +29,10 @@ public interface EmpDAO {
 	public void update2(Emp emp);
 	
 	public List<Emp> findByIds(Condition cond);
+	
+	public void save(Emp emp);
+	
+	public Emp findById(int id);
+	
+	public Emp findById2(int id);
 }
