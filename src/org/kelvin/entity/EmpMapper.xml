@@ -2,8 +2,49 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.kelvin.dao.EmpDAO">
 
+	<!-- 查询全部的员工 -->
 	<select id="findAll" resultType="org.kelvin.entity.Emp">
 		select * from t_emp
 	</select>
+	
+	<!-- 保存一条员工数据 -->
+	<insert id="save" parameterType="org.kelvin.entity.Emp" keyProperty="empno" useGeneratedKeys="true">
+		insert into t_emp(empno,
+						  ename,
+						  job,
+						  mgr,
+						  hiredate,
+						  sal,
+						  comm,
+						  deptno) 
+		values(#{empno},
+			   #{ename,jdbcType=VARCHAR},
+			   #{job,jdbcType=VARCHAR},
+			   #{mgr,jdbcType=NUMERIC},
+			   #{hiredate,jdbcType=DATE},
+			   #{sal,jdbcType=NUMERIC},
+			   #{comm,jdbcType=NUMERIC},
+			   #{deptno,jdbcType=NUMERIC})
+	</insert>
+	
+	<!-- 根据ID查询员工 -->
+	<select id="findById" parameterType="java.lang.Integer" 
+						  resultType="org.kelvin.entity.Emp">
+		select * from t_emp where empno = #{id}
+	</select>
+	
+	<!-- 修改员工 -->
+	<update id="update" parameterType="org.kelvin.entity.Emp">
+		update t_emp 
+		   set ename = #{ename,jdbcType=VARCHAR},
+			   job = #{job,jdbcType=VARCHAR},
+	      	   sal = #{sal,jdbcType=NUMERIC}
+	     where empno = #{empno,jdbcType=NUMERIC}
+	</update>
+	
+	<!-- 删除员工 -->
+	<delete id="delete" parameterType="java.lang.Integer">
+		delete from t_emp where empno = #{id}
+	</delete>
 
 </mapper>

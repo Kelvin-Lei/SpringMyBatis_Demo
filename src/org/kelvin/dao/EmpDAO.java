@@ -14,4 +14,12 @@ import org.kelvin.entity.Emp;
 public interface EmpDAO {
 
 	public List<Emp> findAll();
+	
+	public void save(Emp emp);
+	
+	public Emp findById(int id);
+	
+	public void update(Emp emp);
+	
+	public void delete(int id);
 }
