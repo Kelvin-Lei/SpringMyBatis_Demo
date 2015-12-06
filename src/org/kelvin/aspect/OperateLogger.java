@@ -4,17 +4,25 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.springframework.stereotype.Component;
 
 
 /**
  * 用于记录日志的方面组件
  *
  */
+@Component
+@Aspect
 public class OperateLogger {
 
 	/**
 	 * 前置通知，后置通知，最终通知使用方法
 	 */
+	@Before("within(org.kelvin.controller..*)")
 	public void log1() {
 		//记录日志
 		System.out.println("-->记录用户操作信息");
@@ -23,6 +31,7 @@ public class OperateLogger {
 	/**
 	 * 环绕通知使用的方法
 	 */
+	@Around("within(org.kelvin.controller..*)")
 	public Object log2(ProceedingJoinPoint p) throws Throwable {
 		//目标组件的类名
 		String className = p.getTarget().getClass().getName();
@@ -51,6 +60,7 @@ public class OperateLogger {
 	/**
 	 * 异常通知使用的方法
 	 */
+	@AfterThrowing(pointcut="within(org.kelvin.controller..*)", throwing="exception")
 	public void log3(Exception exception) {
 		StackTraceElement[] element = exception.getStackTrace();
 		//记录异常信息

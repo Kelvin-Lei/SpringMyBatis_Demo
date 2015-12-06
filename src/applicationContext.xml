@@ -66,10 +66,10 @@
 	</bean>
 	
 	<!-- 声明方面组件  -->
-	<bean id="operateLogger" class="org.kelvin.aspect.OperateLogger"></bean>
+	<!--<bean id="operateLogger" class="org.kelvin.aspect.OperateLogger"></bean>-->
 	
 	<!-- 配置AOP -->
-	<aop:config>
+	<!--<aop:config>
 		<aop:aspect ref="operateLogger">
 			<aop:before method="log1" pointcut="within(org.kelvin.controller..*)"></aop:before>
 		</aop:aspect>
@@ -81,6 +81,9 @@
 		<aop:aspect ref="operateLogger">
 			<aop:after-throwing method="log3" throwing="exception" pointcut="within(org.kelvin.controller..*)"/>
 		</aop:aspect>
-	</aop:config>
+	</aop:config>-->
+	
+	<!-- 开启AOP注释扫描 -->
+	<aop:aspectj-autoproxy proxy-target-class="true"></aop:aspectj-autoproxy>
 
 </beans>
