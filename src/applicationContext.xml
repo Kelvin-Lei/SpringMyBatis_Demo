@@ -85,5 +85,26 @@
 	
 	<!-- 开启AOP注释扫描 -->
 	<aop:aspectj-autoproxy proxy-target-class="true"></aop:aspectj-autoproxy>
+	
+	<!-- 声明事务管理组件 -->
+	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="myDataSource"></property>
+	</bean>
+	
+	<!-- 开启事务注解扫描 -->
+	<!--<tx:annotation-driven transaction-manager="txManager" proxy-target-class="true"/>-->
+	
+	<!-- XML配置声明事务范围及类型 -->
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="find*" read-only="true"/>
+			<tx:method name="add*" propagation="REQUIRED" rollback-for="java.lang.ClassNotFoundException"/>
+			<tx:method name="update*" propagation="REQUIRED"/>
+			<tx:method name="delete*" propagation="REQUIRED"/>
+		</tx:attributes>
+	</tx:advice>
+	<aop:config proxy-target-class="true">
+		<aop:advisor advice-ref="txAdvice" pointcut="within(org.kelvin.controller..*)"/>
+	</aop:config>
 
 </beans>

@@ -17,4 +17,15 @@ public class TestEmpController {
 		EmpController empController = aContext.getBean(EmpController.class);
 		empController.find();
 	}
+	
+	/**
+	 * 测试指添加员工
+	 */
+	@Test
+	public void test2() throws ClassNotFoundException {
+		String conf = "applicationContext.xml";
+		ApplicationContext aContext = new ClassPathXmlApplicationContext(conf);
+		EmpController ctl = aContext.getBean(EmpController.class);
+		ctl.addBatch();
+	}
 }
